@@ -11,15 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class RestKontrolleri {
 
-    private TestiRepository testiRepository;
-
-    public RestKontrolleri(@Autowired TestiRepository testiRepository) {
-        this.testiRepository = testiRepository;
-    }
 
     @GetMapping("/testi")
-    public Iterable<TestiLista> haesanonnat(SpringDataWebProperties.Pageable pageable) {
-        return testiRepository.findAll();
+    public String haesanonnat() {
+        return "Friedrich Nietsche: Jumala on kuollut, Jumala: Friedrich Nietsche on kuollut, Chuck Norris: Friedrich Nietsche ja Jumala on kuollut, Horst Schimanski: Minä olen Jumala";
     }
 
 
