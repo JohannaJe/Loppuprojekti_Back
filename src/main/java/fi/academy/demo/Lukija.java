@@ -6,13 +6,17 @@ import java.util.*;
 
 public class Lukija {
 
-    List otsikot = new ArrayList();
-   // List linkit = new ArrayList();
-    List ajat = new ArrayList();
+    Feedi eka= new Feedi();
+    List<String> linkit = new ArrayList<>();
+    List<String> otsikot = new ArrayList<>();
+    List<String> ajat = new ArrayList<>();
+    ArrayList mega = new ArrayList();
+
+
 
 
     public List haeLinkki(String url) {
-        List linkit = new ArrayList();
+
         try {
             URL rssURL = new URL(url);
             BufferedReader luettava = new BufferedReader(new InputStreamReader(rssURL.openStream()));
@@ -25,9 +29,9 @@ public class Lukija {
                     jotain = jotain.replace("<link>", "");
                     int vika = jotain.indexOf("</link>");
                     jotain = jotain.substring(0, vika);
-                    linkki += jotain+"\n";
+                    linkki += jotain;
                     linkit.add(linkki);
-
+                    linkki="";
                 }
             }
 
@@ -44,7 +48,7 @@ public class Lukija {
 
 
 
-    public String haeOtsikko(String url) {
+    public List haeOtsikko(String url) {
 
         try {
             URL rssURL = new URL(url);
@@ -65,15 +69,16 @@ public class Lukija {
                         vika= jotain.indexOf("]]></title>");
                     }
                     jotain = jotain.substring(0, vika);
-                    otsikko += jotain+"\n";
-                    //  otsikot.add(otsikko);
+                    otsikko += jotain;
+                    otsikot.add(otsikko);
+                    otsikko="";
 
 
                 }
             }
 
             luettava.close();
-            return otsikko;
+            return otsikot;
         } catch (MalformedURLException urle) {
             System.out.println("Malformed URL");
         } catch (IOException ioe) {
@@ -82,7 +87,7 @@ public class Lukija {
         return null;
     }
 
-    public String haeAika(String url) {
+    public List haeAika(String url) {
 //        DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
 //        Date date = formatter.parse("Sat, 24 Apr 2010 14:01:00 GMT");
 
@@ -92,27 +97,30 @@ public class Lukija {
             String aika = "";
             String rivi;
             while ((rivi = luettava.readLine()) != null) {
+
                 if (rivi.contains("<pubDate>")) {
                     int eka = rivi.indexOf("<pubDate>");
                     String jotain = rivi.substring(eka);
                     jotain = jotain.replace("<pubDate>", "");
                     int vika = jotain.indexOf("</pubDate>");
                     jotain = jotain.substring(0, vika);
-                    aika += jotain+"\n";
-                    //  ajat.add(aika);
+                    aika += jotain;
+                    ajat.add(aika);
+                    aika="";
                     // aika Stringin muunto Date-olioksi??
 
 
                 }
             }
             luettava.close();
-            return aika;
+            return ajat;
         } catch (MalformedURLException urle) {
             System.out.println("Malformed URL");
         } catch (IOException ioe) {
             System.out.println("Eipä tainnut onnistua");
         }
         return null;
+
     }
 
 
@@ -128,5 +136,15 @@ public class Lukija {
 //            //  otsikot.add(otsikko);
 
 
+    public List koostaLista(String url) {
+        haeOtsikko(url);
+        haeLinkki(url);
+        haeAika(url);
+        for (int i = 0; i < ajat.size(); i++) {
+            mega.add(new Feedi(otsikot.get(i), linkit.get(i), ajat.get(i)));
 
+
+        }
+    return mega;
+    }
 }

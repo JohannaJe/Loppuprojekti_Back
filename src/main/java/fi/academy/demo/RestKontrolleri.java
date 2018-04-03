@@ -16,14 +16,24 @@ import java.util.List;
 public class RestKontrolleri {
 
 
+//    public void  kayta() {
+//        Lukija rssOlio = new Lukija();
+//        System.out.println(rssOlio.haeOtsikko("https://www.hs.fi/rss/urheilu.xml"));
+//        System.out.println(rssOlio.haeLinkki("https://www.hs.fi/rss/urheilu.xml"));
+//        System.out.println(rssOlio.haeAika("https://www.hs.fi/rss/urheilu.xml"));
+//        Map<List, List> map = yhdistaListatMapiksi (otsikot, linkit);
+//        System.out.println(map);
+// }
+
+
     @GetMapping("/testi")
 //    public String haesanonnat() {
 //        return "Friedrich Nietsche: Jumala on kuollut, Jumala: Friedrich Nietsche on kuollut, Chuck Norris: Friedrich Nietsche ja Jumala on kuollut, Horst Schimanski: Minä olen Jumala";
 //    }
 
-    public List<String> naytaLista() {
+    public List<Feedi> naytaLista() {
         Lukija nnn = new Lukija();
-        List a= nnn.haeLinkki("https://www.hs.fi/rss/urheilu.xml");
+        List a= nnn.koostaLista("https://www.hs.fi/rss/urheilu.xml");
 //        List<String> lista = new ArrayList();
 //        lista.add("Friedrich Nietsche: Jumala on kuollut");
 //        lista.add("Jumala: Friedrich Nietsche on kuollut");
