@@ -22,12 +22,14 @@ public class RestKontrolleri {
 //    }
 
     public List<String> naytaLista() {
-        List<String> lista = new ArrayList();
-        lista.add("Friedrich Nietsche: Jumala on kuollut");
-        lista.add("Jumala: Friedrich Nietsche on kuollut");
-        lista.add("Chuck Norris: Friedrich Nietsche ja Jumala on kuollut");
-        lista.add("Horst Schimanski: Minä olen Jumala");
-        return lista;
+        Lukija nnn = new Lukija();
+        List a= nnn.haeLinkki("https://www.hs.fi/rss/urheilu.xml");
+//        List<String> lista = new ArrayList();
+//        lista.add("Friedrich Nietsche: Jumala on kuollut");
+//        lista.add("Jumala: Friedrich Nietsche on kuollut");
+//        lista.add("Chuck Norris: Friedrich Nietsche ja Jumala on kuollut");
+//        lista.add("Horst Schimanski: Minä olen Jumala");
+        return a;
     }
 
 }
