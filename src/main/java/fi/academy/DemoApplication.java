@@ -1,4 +1,4 @@
-package fi.academy.demo;
+package fi.academy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package fi.academy.demo;
+package fi.academy;
 
 public class RestKontrolleri {
 }
