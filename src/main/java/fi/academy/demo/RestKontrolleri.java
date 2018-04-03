@@ -1,4 +1,4 @@
-package fi.academy;
+package fi.academy.demo;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

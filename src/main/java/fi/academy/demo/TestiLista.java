@@ -1,4 +1,4 @@
-package fi.academy;
+package fi.academy.demo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
