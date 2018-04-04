@@ -20,9 +20,11 @@ public class RestKontrolleri {
         Parsija parsija = new Parsija();
         List feediListaIS = parsija.parsiFeedit("https://www.is.fi/rss/kotimaa.xml");
         List feediListaHS = parsija.parsiFeedit("https://www.hs.fi/rss/urheilu.xml");
+        List feediListaBBC = parsija.parsiFeedit("http://feeds.bbci.co.uk/news/world/rss.xml");
         List feediLista = new ArrayList();
         feediLista.addAll(feediListaHS);
         feediLista.addAll(feediListaIS);
+        feediLista.addAll(feediListaBBC);
         Collections.sort(feediLista, new FeediOlioComparator());
 
 
