@@ -21,6 +21,7 @@ public class RestKontrolleri {
     public List<Feedi> naytaLista() {
         Lukija lukija = new Lukija();
         List feediLista= lukija.koostaLista("https://www.hs.fi/rss/urheilu.xml");
+
         return feediLista;
     }
 

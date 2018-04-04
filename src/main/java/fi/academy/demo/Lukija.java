@@ -2,6 +2,8 @@ package fi.academy.demo;
 
 import java.io.*;
 import java.net.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Lukija {
@@ -9,7 +11,7 @@ public class Lukija {
 
     List<String> linkit = new ArrayList<>();
     List<String> otsikot = new ArrayList<>();
-    List<String> ajat = new ArrayList<>();
+    List<LocalDateTime> ajat = new ArrayList<>();
     List<String> kuvat = new ArrayList<>();
     ArrayList feediLista = new ArrayList();
 
@@ -165,7 +167,8 @@ public class Lukija {
                         int vika = muokattuRivi.indexOf("</pubDate>");
                         muokattuRivi = muokattuRivi.substring(0, vika);
                         aika += muokattuRivi;
-                        ajat.add(aika);
+                        LocalDateTime paiva = LocalDateTime.parse(aika, DateTimeFormatter.RFC_1123_DATE_TIME);
+                        ajat.add(paiva);
                         aika = "";
                         // aika Stringin muunto Date-olioksi??
 
@@ -183,6 +186,8 @@ public class Lukija {
         return null;
 
     }
+
+    //  LocalDateTime paiva = LocalDateTime.parse(string, DateTimeFormatter.RFC_1123_DATE_TIME);
 
 
     public List koostaLista(String url) {

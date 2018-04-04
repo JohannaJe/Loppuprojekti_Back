@@ -1,13 +1,18 @@
 package fi.academy.demo;
 
+import java.time.LocalDateTime;
+
 public class Feedi {
     private String otsikko;
     private String linkki;
-    private String aikaleima;
+    private LocalDateTime aikaleima;
     private String kuva;
 
+    public void setAikaleima(LocalDateTime aikaleima) {
+        this.aikaleima = aikaleima;
+    }
 
-    public Feedi(String otsikko, String linkki, String aikaleima, String kuva) {
+    public Feedi(String otsikko, String linkki, LocalDateTime aikaleima, String kuva) {
         this.otsikko = otsikko;
         this.linkki = linkki;
         this.aikaleima = aikaleima;
@@ -33,13 +38,7 @@ public class Feedi {
         this.linkki = linkki;
     }
 
-    public String getAikaleima() {
-        return aikaleima;
-    }
 
-    public void setAikaleima(String aikaleima) {
-        this.aikaleima = aikaleima;
-    }
 
     public String getKuva() {
         return kuva;
