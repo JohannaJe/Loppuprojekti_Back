@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -20,7 +22,13 @@ public class RestKontrolleri {
     @GetMapping("/testi")
     public List<Feedi> naytaLista() {
         Lukija lukija = new Lukija();
-        List feediLista= lukija.koostaLista("https://www.hs.fi/rss/urheilu.xml");
+        List feediListaHS= lukija.koostaLista("https://www.hs.fi/rss/urheilu.xml");
+        List feediListaIS= lukija.koostaLista("https://www.is.fi/rss/musiikki.xml");
+        List feediLista = new ArrayList();
+        feediLista.addAll(feediListaHS);
+        feediLista.addAll(feediListaIS);
+        Collections.sort(feediLista, new FeediOlioComparator());
+
 
         return feediLista;
     }

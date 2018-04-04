@@ -8,6 +8,10 @@ public class Feedi {
     private LocalDateTime aikaleima;
     private String kuva;
 
+    public LocalDateTime getAikaleima() {
+        return aikaleima;
+    }
+
     public void setAikaleima(LocalDateTime aikaleima) {
         this.aikaleima = aikaleima;
     }

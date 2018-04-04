@@ -11,7 +11,9 @@ public class Lukija {
 
     List<String> linkit = new ArrayList<>();
     List<String> otsikot = new ArrayList<>();
+
     List<LocalDateTime> ajat = new ArrayList<>();
+
     List<String> kuvat = new ArrayList<>();
     ArrayList feediLista = new ArrayList();
 
@@ -144,8 +146,6 @@ public class Lukija {
     }
 
     public List haeAika(String url) {
-//        DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
-//        Date date = formatter.parse("Sat, 24 Apr 2010 14:01:00 GMT");
 
         try {
             URL rssURL = new URL(url);
@@ -167,8 +167,8 @@ public class Lukija {
                         int vika = muokattuRivi.indexOf("</pubDate>");
                         muokattuRivi = muokattuRivi.substring(0, vika);
                         aika += muokattuRivi;
-                        LocalDateTime paiva = LocalDateTime.parse(aika, DateTimeFormatter.RFC_1123_DATE_TIME);
-                        ajat.add(paiva);
+                        LocalDateTime postausHetki = LocalDateTime.parse(aika, DateTimeFormatter.RFC_1123_DATE_TIME);
+                        ajat.add(postausHetki);
                         aika = "";
                         // aika Stringin muunto Date-olioksi??
 
