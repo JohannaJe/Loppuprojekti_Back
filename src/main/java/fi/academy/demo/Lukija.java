@@ -9,6 +9,7 @@ public class Lukija {
 
     List<String> linkit = new ArrayList<>();
     List<String> otsikot = new ArrayList<>();
+
     List<String> ajat = new ArrayList<>();
     List<String> kuvat = new ArrayList<>();
     ArrayList feediLista = new ArrayList();
