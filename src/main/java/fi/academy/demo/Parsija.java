@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
@@ -13,12 +14,13 @@ import org.w3c.dom.Element;
 
 public class Parsija {
 
-    List<Feedi> feediLista = new ArrayList<>();
 
-    public List parsiFeedit() {
+
+    public List parsiFeedit(String urli) {
+        List<Feedi> feediLista = new ArrayList<>();
 
         try {
-            String urli = "https://www.hs.fi/rss/urheilu.xml";
+
 
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
@@ -52,9 +54,21 @@ public class Parsija {
                             .item(0)
                             .getTextContent();
                     LocalDateTime aikaleima = LocalDateTime.parse(pvm, DateTimeFormatter.RFC_1123_DATE_TIME);
+                    String kuva;
+                    try {
+                        kuva = eElement
+                                .getElementsByTagName("media:content")
+                                .item(0)
+                                .getAttributes()
+                                .getNamedItem("url")
+                                .getNodeValue();
+                    } catch (NullPointerException npe) {
+                        kuva = "https://kuvat.uusisuomi.fi/sites/default/files/imagecache/artikkelikuva_std/kuvat/iso_karhu_125l.jpg";
+                    }
+                      //  kuva = "https://kuvat.uusisuomi.fi/sites/default/files/imagecache/artikkelikuva_std/kuvat/iso_karhu_125l.jpg";
 
-                    feediLista.add(new Feedi(otsikko, linkki, aikaleima));
 
+                    feediLista.add(new Feedi(otsikko, linkki, aikaleima, kuva));
 
 
 //                    System.out.println("Student roll no : "
