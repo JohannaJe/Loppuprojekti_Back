@@ -4,11 +4,14 @@ public class Feedi {
     private String otsikko;
     private String linkki;
     private String aikaleima;
+    private String kuva;
 
-    public Feedi(String otsikko, String linkki, String aikaleima) {
+
+    public Feedi(String otsikko, String linkki, String aikaleima, String kuva) {
         this.otsikko = otsikko;
         this.linkki = linkki;
         this.aikaleima = aikaleima;
+        this.kuva = kuva;
     }
 
     public Feedi() {
@@ -36,6 +39,14 @@ public class Feedi {
 
     public void setAikaleima(String aikaleima) {
         this.aikaleima = aikaleima;
+    }
+
+    public String getKuva() {
+        return kuva;
+    }
+
+    public void setKuva(String kuva) {
+        this.kuva = kuva;
     }
 
     @Override
