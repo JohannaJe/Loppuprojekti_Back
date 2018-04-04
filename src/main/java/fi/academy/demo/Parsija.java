@@ -48,7 +48,10 @@ public class Parsija {
                             .getElementsByTagName("pubDate")
                             .item(0)
                             .getTextContent();
+
                     LocalDateTime aikaleima = LocalDateTime.parse(pvm, DateTimeFormatter.RFC_1123_DATE_TIME);
+
+
 
                     String kuva;
 
