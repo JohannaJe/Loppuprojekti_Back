@@ -1,12 +1,15 @@
 package fi.academy.demo;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Feedi {
     private String otsikko;
     private String linkki;
     private LocalDateTime aikaleima;
     private String kuva;
+    private String aikaleimaString;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss dd-MM-yyyy");
 
     public LocalDateTime getAikaleima() {
         return aikaleima;
@@ -21,6 +24,8 @@ public class Feedi {
         this.linkki = linkki;
         this.aikaleima = aikaleima;
         this.kuva = kuva;
+        this.aikaleimaString=aikaleima.format(formatter);
+
     }
 
     public Feedi(String otsikko, String linkki, LocalDateTime aikaleima) {
@@ -28,6 +33,15 @@ public class Feedi {
         this.linkki = linkki;
         this.aikaleima = aikaleima;
     }
+
+    public String getAikaleimaString() {
+        return aikaleimaString;
+    }
+
+    public void setAikaleimaString(String aikaleimaString) {
+        this.aikaleimaString = aikaleimaString;
+    }
+
 
     public Feedi() {
     }
