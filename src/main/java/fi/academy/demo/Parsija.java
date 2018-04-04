@@ -53,13 +53,7 @@ public class Parsija {
                             .getTextContent();
                     LocalDateTime aikaleima = LocalDateTime.parse(pvm, DateTimeFormatter.RFC_1123_DATE_TIME);
 
-                    String k = eElement
-                            .getElementsByTagName("media:content")
-                            .item(0)
-                            .getTextContent();
-                    String kuva = k.getAttribute("url");
-
-                    feediLista.add(new Feedi(otsikko, linkki, aikaleima, kuva));
+                    feediLista.add(new Feedi(otsikko, linkki, aikaleima));
 
 
 
