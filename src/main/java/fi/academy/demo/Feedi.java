@@ -23,6 +23,12 @@ public class Feedi {
         this.kuva = kuva;
     }
 
+    public Feedi(String otsikko, String linkki, LocalDateTime aikaleima) {
+        this.otsikko = otsikko;
+        this.linkki = linkki;
+        this.aikaleima = aikaleima;
+    }
+
     public Feedi() {
     }
 

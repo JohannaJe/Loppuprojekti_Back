@@ -21,13 +21,18 @@ public class RestKontrolleri {
 
     @GetMapping("/testi")
     public List<Feedi> naytaLista() {
-        Lukija lukija = new Lukija();
-        List feediListaHS= lukija.koostaLista("https://www.hs.fi/rss/urheilu.xml");
-        List feediListaIS= lukija.koostaLista("https://www.is.fi/rss/musiikki.xml");
-        List feediLista = new ArrayList();
-        feediLista.addAll(feediListaHS);
-        feediLista.addAll(feediListaIS);
-        Collections.sort(feediLista, new FeediOlioComparator());
+        Parsija parsija = new Parsija();
+        List feediLista = parsija.parsiFeedit();
+
+
+
+//        Lukija lukija = new Lukija();
+//        List feediListaHS= lukija.koostaLista("https://www.hs.fi/rss/urheilu.xml");
+//        List feediListaIS= lukija.koostaLista("https://www.is.fi/rss/musiikki.xml");
+//        List feediLista = new ArrayList();
+//        feediLista.addAll(feediListaHS);
+//        feediLista.addAll(feediListaIS);
+//        Collections.sort(feediLista, new FeediOlioComparator());
 
 
         return feediLista;
