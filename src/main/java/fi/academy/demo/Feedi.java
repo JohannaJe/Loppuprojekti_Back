@@ -15,6 +15,10 @@ public class Feedi {
         return aikaleima;
     }
 
+    public Feedi(LocalDateTime aikaleima) {
+        this.aikaleima = aikaleima;
+    }
+
     public void setAikaleima(LocalDateTime aikaleima) {
         this.aikaleima = aikaleima;
     }
