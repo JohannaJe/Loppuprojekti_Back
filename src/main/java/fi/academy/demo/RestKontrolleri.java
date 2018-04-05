@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,10 +18,16 @@ public class RestKontrolleri {
 
 
     @GetMapping("/testi")
-    public List<Feedi> naytaLista(@RequestParam(name="name", required = false) String feedname) {
+    public List<Feedi> naytaLista(@RequestParam(name="name", required = false) String [] feednameList) {
         List feediLista = new ArrayList();
         Parsija parsija = new Parsija();
-        System.out.println(feedname);
+        String feedname;
+        System.out.println(Arrays.toString(feednameList));
+
+        for (int i = 0; i < feednameList.length; i++) {
+            feedname = feednameList[i];
+
+
 
         if ("IS".equals(feedname)) {
             List feediListaIS = parsija.parsiFeedit("https://www.is.fi/rss/kotimaa.xml");
@@ -35,6 +42,8 @@ public class RestKontrolleri {
         if ("BBC".equals(feedname)) {
             List feediListaBBC = parsija.parsiFeedit("http://feeds.bbci.co.uk/news/world/rss.xml");
             feediLista.addAll(feediListaBBC);
+        }
+
         }
 
         Collections.sort(feediLista, new FeediOlioComparator());
