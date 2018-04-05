@@ -3,6 +3,7 @@ package fi.academy.demo;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -16,19 +17,32 @@ public class RestKontrolleri {
 
 
     @GetMapping("/testi")
-    public List<Feedi> naytaLista() {
-        Parsija parsija = new Parsija();
-        List feediListaIS = parsija.parsiFeedit("https://www.is.fi/rss/kotimaa.xml");
-        List feediListaHS = parsija.parsiFeedit("https://www.hs.fi/rss/urheilu.xml");
-        List feediListaBBC = parsija.parsiFeedit("http://feeds.bbci.co.uk/news/world/rss.xml");
+    public List<Feedi> naytaLista(@RequestParam(name="name", required = false) String feedname) {
         List feediLista = new ArrayList();
-        feediLista.addAll(feediListaHS);
-        feediLista.addAll(feediListaIS);
-        feediLista.addAll(feediListaBBC);
+        Parsija parsija = new Parsija();
+        System.out.println(feedname);
+
+        if ("IS".equals(feedname)) {
+            List feediListaIS = parsija.parsiFeedit("https://www.is.fi/rss/kotimaa.xml");
+            feediLista.addAll(feediListaIS);
+        }
+
+        if ("HS".equals(feedname)) {
+            List feediListaHS = parsija.parsiFeedit("https://www.hs.fi/rss/urheilu.xml");
+            feediLista.addAll(feediListaHS);
+        }
+
+        if ("BBC".equals(feedname)) {
+            List feediListaBBC = parsija.parsiFeedit("http://feeds.bbci.co.uk/news/world/rss.xml");
+            feediLista.addAll(feediListaBBC);
+        }
+
         Collections.sort(feediLista, new FeediOlioComparator());
 
 
         return feediLista;
     }
+
+
 
 }
