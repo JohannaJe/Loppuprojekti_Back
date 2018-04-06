@@ -28,22 +28,25 @@ public class RestKontrolleri {
             feedname = feednameList[i];
 
 
+            if ("IS".equals(feedname)) {
+                List feediListaIS = parsija.parsiFeedit("https://www.is.fi/rss/kotimaa.xml");
+                feediLista.addAll(feediListaIS);
+            }
 
-        if ("IS".equals(feedname)) {
-            List feediListaIS = parsija.parsiFeedit("https://www.is.fi/rss/kotimaa.xml");
-            feediLista.addAll(feediListaIS);
-        }
+            if ("HS".equals(feedname)) {
+                List feediListaHS = parsija.parsiFeedit("https://www.hs.fi/rss/urheilu.xml");
+                feediLista.addAll(feediListaHS);
+            }
 
-        if ("HS".equals(feedname)) {
-            List feediListaHS = parsija.parsiFeedit("https://www.hs.fi/rss/urheilu.xml");
-            feediLista.addAll(feediListaHS);
-        }
+            if ("BBC".equals(feedname)) {
+                List feediListaBBC = parsija.parsiFeedit("http://feeds.bbci.co.uk/news/world/rss.xml");
+                feediLista.addAll(feediListaBBC);
+            }
 
-        if ("BBC".equals(feedname)) {
-            List feediListaBBC = parsija.parsiFeedit("http://feeds.bbci.co.uk/news/world/rss.xml");
-            feediLista.addAll(feediListaBBC);
-        }
-
+            if ("CNN".equals(feedname)) {
+                List feediListaCNN = parsija.parsiFeedit("http://rss.cnn.com/rss/edition.xml");
+                feediLista.addAll(feediListaCNN);
+            }
         }
 
         Collections.sort(feediLista, new FeediOlioComparator());

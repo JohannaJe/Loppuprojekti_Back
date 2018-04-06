@@ -22,7 +22,6 @@ public class Parsija {
 
         try {
 
-
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(urli);
@@ -58,11 +57,14 @@ public class Parsija {
 //                    int jotain = nyky.getAikaleima().minusMinutes(julkaistu.getAikaleima());
 //                    System.out.println(jotain);
 
-                    String kuva;
 
+                    String kuva= "";
                     try {
-
-                        if (eElement.getElementsByTagName("media:content") != null ) {
+//                        NodeList onkoKuvaa = eElement.getElementsByTagName("media:content");
+//                        System.out.println(onkoKuvaa.getLength());
+                        if (eElement.getElementsByTagName("media:content").getLength() == 0 && eElement.getElementsByTagName("media:thumbnail").getLength() == 0) {
+                            kuva = "https://kuvat.uusisuomi.fi/sites/default/files/imagecache/artikkelikuva_std/kuvat/iso_karhu_125l.jpg";
+                        } else if (eElement.getElementsByTagName("media:content").getLength() != 0 ) {
                             kuva = eElement
                                     .getElementsByTagName("media:content")
                                     .item(0)
@@ -70,25 +72,22 @@ public class Parsija {
                                     .getNamedItem("url")
                                     .getNodeValue();
 
-                        } else if (eElement.getElementsByTagName("media:thumbnail") !=null) {
-                            kuva = eElement
+                        } else if (eElement.getElementsByTagName("media:thumbnail").getLength() != 0) {
+                                kuva = eElement
                                     .getElementsByTagName("media:thumbnail")
                                     .item(0)
                                     .getAttributes()
                                     .getNamedItem("url")
                                     .getNodeValue();
-                        } else {
-                            kuva = "https://upload.wikimedia.org/wikipedia/commons/b/ba/III_olutpullo.jpg";
                         }
 
 
                     } catch (NullPointerException npe) {
-                        List<String> kuvalista = Arrays.asList( "https://kuvat.uusisuomi.fi/sites/default/files/imagecache/artikkelikuva_std/kuvat/iso_karhu_125l.jpg",
-                                                                "https://www.vastavalo.net/albums/userpics/12899/normal_013juopottelu_MG_1803.jpg",
-                                                                "https://media.riemurasia.net/albumit/mmedia/2v/2hw/ezt8/92343/663901211.jpg"
-                                                                 );
+                        List<String> kuvalista = Arrays.asList("https://upload.wikimedia.org/wikipedia/commons/b/ba/III_olutpullo.jpg",
+                                "https://www.vastavalo.net/albums/userpics/12899/normal_013juopottelu_MG_1803.jpg",
+                                "https://media.riemurasia.net/albumit/mmedia/2v/2hw/ezt8/92343/663901211.jpg");
                         Random rand = new Random();
-                        int  n = rand.nextInt(3);
+                        int n = rand.nextInt(3);
                         kuva = kuvalista.get(n);
                     }
 
