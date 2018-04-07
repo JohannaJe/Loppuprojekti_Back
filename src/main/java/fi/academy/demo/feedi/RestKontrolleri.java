@@ -1,4 +1,4 @@
-package fi.academy.demo;
+package fi.academy.demo.feedi;
 
 
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package fi.academy.demo;
+package fi.academy.demo.feedi;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
