@@ -28,6 +28,10 @@ public class User extends DateAudit {
     private String name;
 
     @NotBlank
+    @Size(max = 200)
+    private String data;
+
+    @NotBlank
     @Size(max = 15)
     private String username;
 
@@ -51,11 +55,12 @@ public class User extends DateAudit {
 
     }
 
-    public User(String name, String username, String email, String password) {
+    public User(String name, String username, String email, String password, String data) {
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.data = data;
     }
 
     public Long getId() {
@@ -80,6 +85,14 @@ public class User extends DateAudit {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 
     public String getEmail() {

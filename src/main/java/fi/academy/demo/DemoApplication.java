@@ -36,7 +36,7 @@ public class DemoApplication {
             //Pakollinen databasealustus päättyy
 
             //Alustetaan testikäyttäjä
-            User testikayttaja = new User("Teppo Testi", "testitunnus", "teppo@testaaja.fi", passwordEncoder.encode("salasana"));
+            User testikayttaja = new User("Teppo Testi", "testitunnus", "teppo@testaaja.fi", passwordEncoder.encode("salasana"), "[HS]");
             testikayttaja.setRoles(Collections.singleton(userRooli));
             UserRepo.save(testikayttaja);
 
