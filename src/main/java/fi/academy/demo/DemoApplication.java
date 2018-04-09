@@ -12,6 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Collections;
+
 @SpringBootApplication
 public class DemoApplication {
 
@@ -35,6 +37,7 @@ public class DemoApplication {
 
             //Alustetaan testikäyttäjä
             User testikayttaja = new User("Teppo Testi", "testitunnus", "teppo@testaaja.fi", passwordEncoder.encode("salasana"));
+            testikayttaja.setRoles(Collections.singleton(userRooli));
             UserRepo.save(testikayttaja);
 
 
