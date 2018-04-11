@@ -62,7 +62,7 @@ public class Parsija {
                     try {
 //                        NodeList onkoKuvaa = eElement.getElementsByTagName("media:content");
 //                        System.out.println(onkoKuvaa.getLength());
-                        if (eElement.getElementsByTagName("media:content").getLength() == 0 && eElement.getElementsByTagName("media:thumbnail").getLength() == 0) {
+                        if (eElement.getElementsByTagName("media:content").getLength() == 0 && eElement.getElementsByTagName("media:thumbnail").getLength() == 0 && eElement.getElementsByTagName("enclosure").getLength() == 0) {
                             kuva = "https://kuvat.uusisuomi.fi/sites/default/files/imagecache/artikkelikuva_std/kuvat/iso_karhu_125l.jpg";
                         } else if (eElement.getElementsByTagName("media:content").getLength() != 0 ) {
                             kuva = eElement
@@ -79,7 +79,14 @@ public class Parsija {
                                     .getAttributes()
                                     .getNamedItem("url")
                                     .getNodeValue();
-                        }
+                        } else if (eElement.getElementsByTagName("enclosure").getLength() != 0) {
+                            kuva = eElement
+                                .getElementsByTagName("enclosure")
+                                .item(0)
+                                .getAttributes()
+                                .getNamedItem("url")
+                                .getNodeValue();
+                    }
 
 
                     } catch (NullPointerException npe) {
