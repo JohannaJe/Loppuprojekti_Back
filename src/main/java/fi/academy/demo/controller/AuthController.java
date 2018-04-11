@@ -78,8 +78,17 @@ public class AuthController {
         }
 
         // Creating user's account
+        String muokattavaData = signUpRequest.getData();
+        int eka = muokattavaData.indexOf("[");
+        String likanenKikka = muokattavaData.substring(eka);
+        likanenKikka = likanenKikka.replace("[", "");
+        int vika = likanenKikka.indexOf("]");
+        likanenKikka = likanenKikka.replace("\"", " ");
+        likanenKikka = likanenKikka.substring(0, vika);
+
+
         User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
-                signUpRequest.getEmail(), signUpRequest.getPassword(), signUpRequest.getData()) ;
+                signUpRequest.getEmail(), signUpRequest.getPassword(), likanenKikka) ;
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
