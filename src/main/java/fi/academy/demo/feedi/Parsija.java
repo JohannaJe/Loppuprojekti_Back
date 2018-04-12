@@ -50,21 +50,16 @@ public class Parsija {
                             .item(0)
                             .getTextContent();
 
-//                    LocalDateTime nyt = LocalDateTime.now();
-//                    Feedi nyky = new Feedi(nyt);
+
                     LocalDateTime aikaleima = LocalDateTime.parse(pvm, DateTimeFormatter.RFC_1123_DATE_TIME);
-//                    Feedi julkaistu = new Feedi(aikaleima);
-//                    int jotain = nyky.getAikaleima().minusMinutes(julkaistu.getAikaleima());
-//                    System.out.println(jotain);
 
 
-                    String kuva= "";
+                    String kuva = "";
                     try {
-//                        NodeList onkoKuvaa = eElement.getElementsByTagName("media:content");
-//                        System.out.println(onkoKuvaa.getLength());
+
                         if (eElement.getElementsByTagName("media:content").getLength() == 0 && eElement.getElementsByTagName("media:thumbnail").getLength() == 0 && eElement.getElementsByTagName("enclosure").getLength() == 0) {
                             kuva = "https://kuvat.uusisuomi.fi/sites/default/files/imagecache/artikkelikuva_std/kuvat/iso_karhu_125l.jpg";
-                        } else if (eElement.getElementsByTagName("media:content").getLength() != 0 ) {
+                        } else if (eElement.getElementsByTagName("media:content").getLength() != 0) {
                             kuva = eElement
                                     .getElementsByTagName("media:content")
                                     .item(0)
@@ -73,7 +68,7 @@ public class Parsija {
                                     .getNodeValue();
 
                         } else if (eElement.getElementsByTagName("media:thumbnail").getLength() != 0) {
-                                kuva = eElement
+                            kuva = eElement
                                     .getElementsByTagName("media:thumbnail")
                                     .item(0)
                                     .getAttributes()
@@ -81,12 +76,12 @@ public class Parsija {
                                     .getNodeValue();
                         } else if (eElement.getElementsByTagName("enclosure").getLength() != 0) {
                             kuva = eElement
-                                .getElementsByTagName("enclosure")
-                                .item(0)
-                                .getAttributes()
-                                .getNamedItem("url")
-                                .getNodeValue();
-                    }
+                                    .getElementsByTagName("enclosure")
+                                    .item(0)
+                                    .getAttributes()
+                                    .getNamedItem("url")
+                                    .getNodeValue();
+                        }
 
 
                     } catch (NullPointerException npe) {

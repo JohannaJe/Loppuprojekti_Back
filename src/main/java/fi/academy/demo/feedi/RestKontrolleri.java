@@ -32,12 +32,11 @@ public class RestKontrolleri {
         for (int i = 0; i < feednameList.length; i++) {
             feedname = feednameList[i];
 
-            if(feedname.contains("www") || feedname.contains("http")){
+            if (feedname.contains("www") || feedname.contains("http") || feedname.contains(".rss") || feedname.contains(".xml")) {
                 String feedUrl = feedname;
-                omaFeediLista= parsija.parsiFeedit(feedUrl);
+                omaFeediLista = parsija.parsiFeedit(feedUrl);
                 feediLista.addAll(omaFeediLista);
             }
-            // tähän tulee tarvittaessa .rss ja .xml urlit suodattava if hässäkkä
 
             if (feedname.contains("CNN")) {
                 if (feedname.contains("latest")) {
@@ -110,11 +109,7 @@ public class RestKontrolleri {
                     feediLista.addAll(feediListaHS);
                 }
             }
-//              vanha versio if lauseesta
-//            if("BBC".equals(feedname)){
-//                List feedilistaBBC=new ArrayList();
-//                feediLista.addAll(feedilistaBBC);
-//            }
+
             if (feedname.contains("BBC")) {
                 if (feedname.contains("world")) {
                     feediListaBBC = parsija.parsiFeedit("http://feeds.bbci.co.uk/news/world/rss.xml");

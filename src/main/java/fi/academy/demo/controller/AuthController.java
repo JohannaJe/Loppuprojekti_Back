@@ -102,8 +102,7 @@ public class AuthController {
 
     @PostMapping("/updateData")
     public ResponseEntity<?> updateUserData(@Valid @RequestBody UpdateRequest updateRequest) {
-        System.out.println("UPDATE!!!!!!!!!!!!!!!!!!!!!!!");
-        // Creating user's account
+
         String muokattavaData = updateRequest.getData();
         int eka = muokattavaData.indexOf("[");
         String likanenKikka = muokattavaData.substring(eka);
@@ -117,21 +116,6 @@ public class AuthController {
         userRepository.save(haeKäyttäjä.get());
 
 
-//        User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
-//                signUpRequest.getEmail(), signUpRequest.getPassword(), likanenKikka) ;
-//
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//
-//        Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-//                .orElseThrow(() -> new AppException("User Role not set."));
-//
-//        user.setRoles(Collections.singleton(userRole));
-////
-//        User result = userRepository.save(user);
-////
-//        URI location = ServletUriComponentsBuilder
-//                .fromCurrentContextPath().path("/users/{username}")
-//                .buildAndExpand(result.getUsername()).toUri();
 
         return ResponseEntity.ok().build();
     }
