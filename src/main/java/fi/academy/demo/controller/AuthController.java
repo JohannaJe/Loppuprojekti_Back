@@ -100,9 +100,9 @@ public class AuthController {
         return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
     }
 
-    @PutMapping("/update")
+    @PostMapping("/updateData")
     public ResponseEntity<?> updateUserData(@Valid @RequestBody UpdateRequest updateRequest) {
-
+        System.out.println("UPDATE!!!!!!!!!!!!!!!!!!!!!!!");
         // Creating user's account
         String muokattavaData = updateRequest.getData();
         int eka = muokattavaData.indexOf("[");
