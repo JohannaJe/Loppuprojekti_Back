@@ -8,7 +8,7 @@ public class SignUpRequest {
     private String name;
 
     @NotBlank
-    @Size(max = 200)
+    @Size(max = 1000)
     private String data;
 
     @NotBlank
